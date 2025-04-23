@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Cormorant', serif;
+    color: #33321D;
 }
 
 .navbar-brand{
@@ -46,4 +47,19 @@ span.input-group-text {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.btn-primary {
+    color: #33321D; 
+    background-color: #F5F2B4; 
+    border: none;
+    font-weight: 700;
+}
+
+.btn-primary:hover, .btn-primary:active{
+    color: #F5F2B4 !important; 
+    background-color: #33321D !important; 
+    border: none !important;
+    border-radius: 3 !important;
+    font-weight: 700 !important;
 }
