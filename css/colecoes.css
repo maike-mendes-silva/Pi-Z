@@ -70,6 +70,23 @@ span.input-group-text {
 }
   
 .carousel-inner img {
-    height: 750px;
+    height: 650px;
     object-fit: cover;
+}
+
+.carousel-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    text-align: left;
+    color: #ffff;
+    background-color: #33321d52;
+    padding: 5px;
+    border-radius: 45px;
+    max-width: 100%;
+}
+
+.carousel-text p {
+    font-size: 30px;
+    color: #fefffe
 }

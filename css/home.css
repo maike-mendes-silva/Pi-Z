@@ -1,11 +1,9 @@
-
-
 * {
     font-family: 'Cormorant', serif;
     color: #33321D;
 }
 
-.navbar-brand{
+.navbar-brand {
     margin-right: 8px;
     padding-bottom: 0px;
     padding-top: 0px;
@@ -38,11 +36,11 @@ span.input-group-text {
     transition: all 0.3s ease-in-out;
 }
 
-.mb-3{
+.mb-3 {
     margin-bottom: 0 !important;
 }
 
-.home-bg{
+.home-bg {
     background-image: url('../img/background_login.png');
     background-size: cover;
     background-position: center;
@@ -50,16 +48,23 @@ span.input-group-text {
 }
 
 .btn-primary {
-    color: #33321D; 
-    background-color: #F5F2B4; 
+    color: #33321D;
+    background-color: #F5F2B4;
     border: none;
     font-weight: 700;
 }
 
-.btn-primary:hover, .btn-primary:active{
-    color: #F5F2B4 !important; 
-    background-color: #33321D !important; 
+.btn-primary:hover,
+.btn-primary:active {
+    color: #F5F2B4 !important;
+    background-color: #33321D !important;
     border: none !important;
     border-radius: 3 !important;
     font-weight: 700 !important;
+}
+
+.card {
+    width: 12rem;
+    background-color: #FEFFFE;
+    border-color: #F6ED63 !important;
 }
