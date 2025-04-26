@@ -1,11 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pi Z - suporte</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/login.css" />
 </head>
+
 <body>
-    <p>teste</p>
+
+    <header>
+        <nav class="navbar bg-light fixed-top shadow-sm w-100 p-1">
+            <div class="container-fluid d-flex flex-column flex-md-row align-items-start align-items-md-center">
+          
+              <!-- Parte de cima: Logo + Botão Hamburguer + Ícone perfil -->
+              <div class="d-flex justify-content-between w-100 align-items-center mb-2 mb-md-0">
+                
+                <!-- Botão Hamburguer -->
+                <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                  aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon "></span>
+                </button>
+          
+                <!-- Logo e Título -->
+                <a class="navbar-brand d-flex align-items-center" href="home.html">
+                  <img src="../img/logo_PiZ.png" alt="Logotipo da Pi Z" class="img-fluid" style="max-width: 35px;">
+                  <p class="cormorant-bold mb-0 ms-2" style="font-size: 25px;">Pi Z</p>
+                </a>
+
+                <!--Ícone de perfil-->
+                <div class="d-flex align-items-center justify-content-center p-1">
+                    <a href="login.html" class="rounded-circle  border d-flex align-items-center justify-content-center p-1">
+                        <img src="../img/user_icon.png" alt="Ícone de perfil" class="img-fluid" style="max-width: 30px;">
+                      </a>
+                  </div>    
+
+          
+              </div>
+          
+              <!-- Itens colapsáveis (opcional, se quiser o menu escondido em mobile) -->
+              <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex gap-3 me-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">Início</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="colecoes.html">Coleções</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="suporte.html">Suporte</a>
+                  </li>
+                </ul>
+              </div>
+          
+            </div>
+          </nav>
+
+    </header>
+
+    <div class="login-bg d-flex justify-content-center align-items-center vh-100">
+        <div class="container bg-white rounded shadow d-flex flex-column justify-content-center align-items-center" style="max-width: 900px; height: 50%;">
+            
+            <h1 class="cormorant-bold mb-4 text-center" style="font-size: 40px;">Como podemos ajudar?</h1>
+            
+            <!-- Barra de Pesquisa -->
+            <form class="w-75 p-1">
+                <div class="input-group">
+                    <!-- Input com borda arredondada à esquerda -->
+                    <input type="text" class="form-control rounded-start-pill" placeholder="Descreva sua dúvida ou problema aqui...">
+                    
+                    <!-- Botão da lupa -->
+                    <button class="btn btn-outline-secondary rounded-end-pill d-flex align-items-center justify-content-center" type="button">
+                        <img src="../img/Search_icon.png" alt="Pesquisar" style="width: 20px; height: 20px;">
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
