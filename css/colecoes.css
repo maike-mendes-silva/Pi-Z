@@ -250,3 +250,75 @@ section .card .image img{
   background-color: #383720;
   border-color: #383720;
 }
+
+.rodape{
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: linear-gradient(to bottom, #33321D, #454428, #51502e);
+  border-color: #F5F2B4;
+  border-radius: 2px;
+}
+
+.rodape .servicos{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.servicos p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.servicos a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.servicos a:hover{
+  color: #fefffe;
+}
+
+.rodape .suporte{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.suporte p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.suporte a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.suporte a:hover{
+  color: #fefefe;
+}
+
+.rodape .termos{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.termos p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.termos a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.termos a:hover{
+  color: #fefefe;
+}
