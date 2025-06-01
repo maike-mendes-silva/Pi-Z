@@ -1,0 +1,48 @@
+
+
+* {
+    font-family: 'Cormorant', serif;
+    color: #33321D;
+}
+
+.navbar-brand{
+    margin-right: 8px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.cadastro-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../img/background_login.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cormorant-bold {
+    font-family: 'Cormorant', serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+}
+
+input.form-control {
+    border-radius: 3;
+    border: 1px solid #A09E75;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+    font-weight: 700;
+}
+
+.btn-success {
+    color: #33321D; 
+    background-color: #F5F2B4; 
+    border: none;
+    font-weight: 700;
+}
+
+.btn-success:hover, .btn-success:active{
+    color: #F5F2B4 !important; 
+    background-color: #33321D !important; 
+    border: none !important;
+    border-radius: 3 !important;
+    font-weight: 700 !important;
+}

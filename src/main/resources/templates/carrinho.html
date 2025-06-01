@@ -25,17 +25,17 @@
           </button>
 
           <!-- Logo e Título -->
-          <a class="navbar-brand d-flex align-items-center" href="home.html">
+          <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
             <img src="../img/logo_PiZ.png" alt="Logotipo da Pi Z" class="img-fluid" style="max-width: 35px;">
             <p class="cormorant-bold mb-0 ms-2" style="font-size: 25px;">Pi Z</p>
           </a>
 
           <!-- Ícone do carrinho e Ícone de perfil-->
           <div class="d-flex align-items-center justify-content-center p-1">
-            <a href="carrinho.html" class="d-flex align-items-center justify-content-center p-1">
+            <a th:href="@{/carrinho}" class="d-flex align-items-center justify-content-center p-1">
               <img src="../img/cart_icon.png" alt="Ícone de perfil" class=" img-fluid" style="max-width: 30px;">
             </a>
-            <a href="login.html" class="rounded-circle  border d-flex align-items-center justify-content-center p-1">
+            <a th:href="@{/login}" class="rounded-circle  border d-flex align-items-center justify-content-center p-1">
               <img src="../img/user_icon.png" alt="Ícone de perfil" class="img-fluid" style="max-width: 30px;">
             </a>
           </div>
@@ -67,20 +67,19 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex gap-3 me-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="home.html">Início</a>
+              <a class="nav-link active" aria-current="page" th:href="@{/}">Início</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="colecoes.html">Coleções</a>
+              <a class="nav-link" th:href="@{/colecoes}">Coleções</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="suporte.html">Suporte</a>
+              <a class="nav-link" th:href="@{/suporte}">Suporte</a>
             </li>
           </ul>
         </div>
 
       </div>
     </nav>
-
   </header>
   <section>
     <div class="container cart-container d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
