@@ -22,6 +22,16 @@
   <!-- Insere o cabeçalho separado em outro arquivo -->
   <header th:replace="fragments/menuNavegacao :: menuNavegacao"></header>
 
+  <!-- Alerta Toast -->
+  <div th:if="${mensagem}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 7rem; right: 1rem;" data-bs-autohide="true"
+  data-bs-delay="7000">
+    <div class="toast-header">
+      <strong class="me-auto">Erro ao entrar no sistema</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+    </div>
+    <div class="toast-body" th:text="${mensagem}"></div>
+  </div>
+
     <div class="login-bg d-flex justify-content-center align-items-center vh-100">
         <div class="container bg-white rounded shadow d-flex justify-content-evenly align-items-center gap-4" style="max-width: 900px; height: 50%;">
             <img src="../img/logo_PiZ.png" alt="Logotipo da Pi Z" class="img-fluid" style="max-width: 275px;" />
@@ -40,5 +50,11 @@
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Para que o alerta toast saia da tela -->
+    <script>
+      const toastEl = document.querySelector('.toast');
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    </script>
 </body>
 </html>

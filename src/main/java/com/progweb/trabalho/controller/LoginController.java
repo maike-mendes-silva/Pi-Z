@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.progweb.trabalho.model.Usuario;
 import com.progweb.trabalho.repository.UsuarioRepository;
@@ -25,12 +26,13 @@ public class LoginController {
     }
 
     @PostMapping("/entrar")
-    public String entrar(@RequestParam String email, @RequestParam String senha){
+    public String entrar(@RequestParam String email, @RequestParam String senha, RedirectAttributes attributes){
 
         Optional<Usuario> usuario = usuarioRepository.findByEmailAndSenha(email, senha);
         if (usuario.isPresent()) {
             return "redirect:/";   
         } else {
+            attributes.addFlashAttribute("mensagem", "Email ou senha inválidos!");
             return "redirect:/login";
         }
     }
