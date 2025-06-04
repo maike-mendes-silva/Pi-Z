@@ -1,4 +1,4 @@
-package com.progweb.trabalho.suporte;
+package com.progweb.trabalho.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
