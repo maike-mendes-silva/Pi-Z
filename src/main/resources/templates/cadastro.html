@@ -22,7 +22,7 @@
 <body>
 
   <!-- Insere o cabeçalho separado em outro arquivo -->
-  <header th:replace="fragments/menuNavegacao :: menuNavegacao"></header>
+  <header th:replace="~{fragments/menuNavegacao :: menuNavegacao}"></header>
   
   <!-- Alerta Toast -->
   <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 7rem; right: 1rem;" data-bs-autohide="true"
