@@ -26,6 +26,10 @@ public class UsuarioService {
         return usuarioRepository.findByEmailAndSenha(email, senha);
     }
 
+    public Optional<Usuario> acharPorId(long id){
+        return usuarioRepository.findById(id);
+    }
+
 
 
 }

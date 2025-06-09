@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.progweb.trabalho.model.Usuario;
 import com.progweb.trabalho.service.UsuarioService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -28,10 +30,11 @@ public class LoginController {
 
     //Verifica se as credenciais estão certas e loga
     @PostMapping("/entrar")
-    public String entrar(@RequestParam String email, @RequestParam String senha, RedirectAttributes attributes){
+    public String entrar(@RequestParam String email, @RequestParam String senha, RedirectAttributes attributes, HttpSession session){
 
         Optional<Usuario> usuario = usuarioService.acharPorEmaileSenha(email, senha);
         if (usuario.isPresent()) {
+            session.setAttribute("usuarioID", usuario.get().getId());
             return "redirect:/";   
         } else {
             attributes.addFlashAttribute("mensagem", "Email ou senha inválidos!");
@@ -39,4 +42,9 @@ public class LoginController {
         }
     }
 
+    @PostMapping("/sair")
+    public String sair(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
+    }
 }

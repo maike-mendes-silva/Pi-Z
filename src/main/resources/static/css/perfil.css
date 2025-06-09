@@ -1,0 +1,142 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Cormorant', serif;
+}
+
+.Container {
+  display: flex;
+  height: 100vh;
+}
+
+.lado-esquerdo {
+  width: 33.33%;
+  background-color: #d8d8d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-perfil {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+}
+
+.card-perfil .foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 auto 15px auto;
+}
+
+.card-perfil h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Lado direito */
+.lado-direito {
+  width: 66.66%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Retângulo do carrinho */
+.carrinho {
+  border: 2px dashed #ccc;
+  padding: 40px;
+  width: 80%;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #888;
+}
+
+.total{
+    margin-top: 20px;
+    border: 2px dashed #ccc;
+    padding-left: 15px;
+    width: 80%;
+    text-align: left;
+    font-size: 1.25rem;
+    color: #888;
+}
+
+.rodape{
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: linear-gradient(to bottom, #33321D, #454428, #51502e);
+  border-color: #F5F2B4;
+  border-radius: 2px;
+}
+
+.rodape .servicos{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.servicos p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.servicos a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.servicos a:hover{
+  color: #fefffe;
+}
+
+.rodape .suporte{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.suporte p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.suporte a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.suporte a:hover{
+  color: #fefefe;
+}
+
+.rodape .termos{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.termos p{
+  color: #F5F2B4;
+  font-size: 25px;
+}
+
+.termos a{
+  font-size: 20px;
+  color: #F5F2B4;
+  text-decoration: none;
+}
+
+.termos a:hover{
+  color: #fefefe;
+}
