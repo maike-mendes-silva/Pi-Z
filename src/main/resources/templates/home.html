@@ -435,25 +435,7 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <footer>
-      <div class="rodape">
-        <div class="servicos">
-          <p>Serviços</p>
-          <a href="../html/login.html">Conta</a>
-          <a href="../html/carrinho.html">Carrinho</a>
-          <a href="../html/colecoes.html">Coleções</a>
-        </div>
-        <div class="suporte">
-          <p>Suporte ao Cliente</p>
-          <a href="../html/suporte.html">Suporte</a>
-        </div>
-        <div class="termos">
-          <p>Termos Legais</p>
-          <a href="#">Termos e Condições legais</a>
-          <a href="#">Politicas de Privacidade</a>
-          <a href="#">Preferencias de Cookie</a>
-          <a href="#">Condições gerais de venda</a>
-        </div>
-      </div>
-    </footer>
+    
+    <!-- Insere o rodapé separado em outro arquivo -->
+    <footer th:replace="~{fragments/rodape :: rodape}"></footer>
 </body>

@@ -11,24 +11,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.progweb.trabalho.model.Usuario;
-import com.progweb.trabalho.repository.UsuarioRepository;
+import com.progweb.trabalho.service.UsuarioService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioService;
 
+    //Redireciona para a tela de login
     @GetMapping
     public String login(){
         return "login";
     }
 
+    //Verifica se as credenciais estão certas e loga
     @PostMapping("/entrar")
     public String entrar(@RequestParam String email, @RequestParam String senha, RedirectAttributes attributes){
 
-        Optional<Usuario> usuario = usuarioRepository.findByEmailAndSenha(email, senha);
+        Optional<Usuario> usuario = usuarioService.acharPorEmaileSenha(email, senha);
         if (usuario.isPresent()) {
             return "redirect:/";   
         } else {
