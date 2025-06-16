@@ -1,0 +1,11 @@
+<!-- fragments/confirmarAdicionarQuantidade.html -->
+<div th:fragment="confirmarAdicionarQuantidade" class="mt-4">
+  <div class="alert alert-warning">
+    <strong>Produto já cadastrado!</strong> Deseja adicionar à quantidade existente?
+  </div>
+  <form th:action="@{/produtos/adicionarQuantidade}" method="post" class="d-flex gap-3">
+    <input type="hidden" name="id" th:value="${produtoExistente.id}" />
+    <input type="number" class="form-control" name="quantidadeAdicionar" placeholder="Quantidade a adicionar" min="1" required />
+    <button type="submit" class="btn btn-success">Confirmar</button>
+  </form>
+</div>
