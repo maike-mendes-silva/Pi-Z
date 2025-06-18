@@ -11,12 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.progweb.trabalho.model.Produto;
-import com.progweb.trabalho.repository.ProdutoRepository;
+import com.progweb.trabalho.service.ProdutoService;
 
 @Controller
 public class ProdutoController {
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @PostMapping("/produtos")
     public String salvarProduto(@Validated @ModelAttribute("novoProduto") Produto produto,
@@ -28,7 +28,7 @@ public class ProdutoController {
             return "perfil";
         }
 
-        Produto existente = produtoRepository.findByNomeAndColecaoAndTamanho(produto.getNome(), produto.getColecao(), produto.getTamanho());
+        Produto existente = produtoService.acharPorNomeColecaoTamanho(produto.getNome(), produto.getColecao(), produto.getTamanho());
 
         if (existente != null) {
             model.addAttribute("produtoExistente", existente);
@@ -38,23 +38,23 @@ public class ProdutoController {
             return "perfil";
         }
 
-        produtoRepository.save(produto);
+        produtoService.salvar(produto);
         return "redirect:/perfil";
     }
 
     @PostMapping("/produtos/adicionarQuantidade")
     public String adicionarQuantidade(@RequestParam("id") Long id,
                                       @RequestParam("quantidadeAdicionar") int quantidadeAdicionar) {
-        Produto produto = produtoRepository.findById(id).orElse(null);
+        Produto produto = produtoService.acharPorId(id).orElse(null);
         if (produto != null) {
             produto.setQuantidade(produto.getQuantidade() + quantidadeAdicionar);
-            produtoRepository.save(produto);
+            produtoService.salvar(produto);
         }
         return "redirect:/perfil";
     }
 
     private void carregarProdutos(Model model) {
-        List<Produto> produtos = produtoRepository.findAll();
+        List<Produto> produtos = produtoService.acharTodos();
 
         List<Map<String, Object>> listaMapeada = new ArrayList<>();
         List<String> colunas = new ArrayList<>();
@@ -81,7 +81,7 @@ public class ProdutoController {
     }
     @PostMapping("/produtos/remover")
     public String removerProduto(@RequestParam("id") Long id) {
-        produtoRepository.deleteById(id);
+        produtoService.deletar(id);
         return "redirect:/perfil";
     }
 

@@ -53,7 +53,6 @@
                   <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
                   <p class="card-text descricao-produto"th:text="${produto.descricao}"></p>
                   <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"><strong></strong></p>
-                  <p class="card-text tam-produto" th:text="${produto.tamanho}"></p>
                   <div class="rating mb-2">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>

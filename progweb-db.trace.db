@@ -910,3 +910,5 @@ UPDATE produto SET imgLink ='https://secure-static.arezzo.com.br/medias/sys_mast
 	at java.base/java.lang.Thread.run(Thread.java:840)
 2025-06-15 12:10:28.411403-04:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-18 12:34:13.420733Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

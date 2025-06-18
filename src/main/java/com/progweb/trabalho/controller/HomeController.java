@@ -1,11 +1,12 @@
 package com.progweb.trabalho.controller;
 
-import com.progweb.trabalho.model.Produto;
-import com.progweb.trabalho.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.progweb.trabalho.model.Produto;
+import com.progweb.trabalho.service.ProdutoService;
 
 import java.util.List;
 
@@ -13,12 +14,12 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-        // Busca todos os produtos no banco
-        List<Produto> produtos = produtoRepository.findAll();
+        // Busca os produtos Agrupados por Coleção e Nome
+        List<Produto> produtos = produtoService.getProdutosAgrupadosPorColecaoENome();
 
         // Adiciona a lista no Model para o Thymeleaf
         model.addAttribute("produtos", produtos);
