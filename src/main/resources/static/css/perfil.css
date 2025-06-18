@@ -2,11 +2,15 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: 'Cormorant', serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .Container {
   display: flex;
-  height: 100vh;
+  margin-top: 11vh;
+  flex-grow: 1;
 }
 
 .lado-esquerdo {

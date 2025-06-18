@@ -27,7 +27,8 @@
       </div>
     </section>
 
-    <section class="lado-direito flex-grow">
+    <!--Só mostra se o usuário for ADMIN-->
+    <section class="lado-direito flex-grow" th:if="${usuario.ehAdmin == true}">
       <th:block th:replace="~{fragments/cadastrarProduto :: cadastrarProduto}" />
 
       <!-- Mostrar confirmação se produto já existir -->
@@ -35,7 +36,7 @@
         <th:block th:replace="~{fragments/confirmarAdicionarQuantidade :: confirmarAdicionarQuantidade}" />
       </div>
     </section>
-    <section class="lado-direito flex-grow-1">
+    <section class="lado-direito flex-grow-1" th:if="${usuario.ehAdmin == true}">
       <th:block th:replace="~{fragments/listarProdutos :: listarProdutos}" />
     </section>
   </div>
