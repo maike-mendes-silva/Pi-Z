@@ -30,7 +30,7 @@ public class Produto {
     @Min(value = 1, message = "Tamanho deve ser no mínimo 1")
     private int tamanho;
 
-    private String imgLink;  // imagem pode ser opcional, se quiser validação aqui, pode adicionar
+    private String imgUrl;  // imagem pode ser opcional, se quiser validação aqui, pode adicionar
 
     @NotNull(message = "Preço é obrigatório")
     @DecimalMin(value = "0.01", inclusive = true, message = "Preço deve ser maior que zero")

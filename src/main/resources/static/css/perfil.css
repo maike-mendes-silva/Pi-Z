@@ -1,7 +1,17 @@
+* {
+  font-family: 'Cormorant', serif;
+  color: #33321D;
+}
+
+.cormorant-bold {
+  font-family: 'Cormorant', serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+}
+
 body, html {
   height: 100%;
   margin: 0;
-  font-family: 'Cormorant', serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

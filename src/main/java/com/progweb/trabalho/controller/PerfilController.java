@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 
 import com.progweb.trabalho.model.Produto;
 import com.progweb.trabalho.model.Usuario;
-import com.progweb.trabalho.repository.ProdutoRepository;
+
+import com.progweb.trabalho.service.ProdutoService;
 import com.progweb.trabalho.service.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,22 +21,23 @@ import jakarta.servlet.http.HttpSession;
 public class PerfilController {
 
     @Autowired
-    private UsuarioService UsuarioService;
+    private UsuarioService usuarioService;
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     // Rota para perfil. Se tiver usuário logado -> perfil. Se não -> login
     @GetMapping
     public String perfil(HttpSession session, Model model) {
-        
-        if(session.getAttribute("usuarioID") == null)
+
+        if(session.getAttribute("usuarioID") == null){
             return "redirect:/login";
+        }
 
         long usuarioID = (long) session.getAttribute("usuarioID");
-        Optional<Usuario> usuario = UsuarioService.acharPorId(usuarioID);
+        Optional<Usuario> usuario = usuarioService.acharPorId(usuarioID);
         model.addAttribute("usuario", usuario.get());   
         model.addAttribute("produto", new Produto()); // para o formulário
-        model.addAttribute("produtos", produtoRepository.findAll());      
+        model.addAttribute("produtos", produtoService.acharTodos());      
         return "perfil";
     }
 

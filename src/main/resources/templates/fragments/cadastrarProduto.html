@@ -1,13 +1,16 @@
 <div th:fragment="cadastrarProduto" class="cadastrarProduto">
     <h1 class="cormorant-bold">Cadastrar produto</h1>
-    <form class="d-flex flex-column gap-4 mt-4" th:action="@{/produtos}" method="POST">
+    <form class="d-flex flex-column gap-4 mt-4" th:action="@{/produtos}" method="POST" enctype="multipart/form-data">
         <input type="text" name="nome" class="form-control" placeholder="nome do produto" required />
         <input type="text" name="colecao" class="form-control" placeholder="coleção" required />
         <input type="text" name="descricao" class="form-control" placeholder="descrição do produto" required />
         <input type="number" name="tamanho" class="form-control" placeholder="tamanho" required />
         <input type="number" step="0.01" name="preco" class="form-control" placeholder="preço" required />
         <input type="number" name="quantidade" class="form-control" placeholder="quantidade" required />
-        <input type="url" name="imagemUrl" class="form-control" placeholder="Link da imagem" required />
+
+        <label for="imagemProduto" class="form-label">Imagem do Produto:</label>
+        <input type="file" id="imagemProduto" name="imagem" class="form-control" accept="image/*" required />
+
         <button type="submit" class="b">Cadastrar</button>
     </form>
 </div>

@@ -48,7 +48,7 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide" th:each="produto : ${produtos}">
               <div class="card card-produto">
-              <img th:src="${produto.imgLink}" class="card-img-top img-produto" th:alt="${produto.nome}">
+              <img th:src="${produto.imgUrl}" class="card-img-top img-produto" th:alt="${produto.nome}">
                 <div class="card-body">
                   <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
                   <p class="card-text descricao-produto"th:text="${produto.descricao}"></p>
