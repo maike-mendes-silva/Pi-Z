@@ -52,7 +52,7 @@
                 <div class="card-body">
                   <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
                   <p class="card-text descricao-produto"th:text="${produto.descricao}"></p>
-                  <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"><strong></strong></p>
+                  <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"></p>
                   <div class="rating mb-2">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -61,7 +61,8 @@
                     <i class="far fa-star"></i>
                   </div>
                   <div class="d-flex gap-2">
-                    <button class="btn btn-outline-not btn-sm">Comprar</button>
+                    <button class="btn btn-outline-primary btn-sm">Adicionar</button>
+                    <button class="btn btn-primary btn-sm">Comprar</button>
                   </div>
                 </div>
               </div>
@@ -77,32 +78,32 @@
 
     <div class="container d-flex justify-content-start align-items-center gap-2 m-4">
       <img src="../img/estrela_icon.png" alt="Icone em alta" class="img-fluid" style="width: 40px; height: 40px;">
-      <h2 class="cormorant-bold" style="margin-bottom: 0;">Para Você</h2>
+      <h2 class="cormorant-bold" style="margin-bottom: 0;">Nossos produtos</h2>
     </div>
 
     <section>
       <div class="container d-flex justify-content-center align-items-center gap-5 ms-5 mb-4 flex-wrap">
 
         <!-- Listagem Sapatos -->
-        <div class="card card-produto">
-          <img src="../img/calcado_exemplo.png" class="card-img-top img-produto" alt="Calçado feminino">
-          <div class="card-body">
-            <h5 class="card-title titulo-produto">Coleção Z</h5>
-            <p class="card-text descricao-produto">Sandalia Vizzano Salto Alto Fino</p>
-            <p class="card-text preco-produto"><strong>R$129,99 ou 10x de 12,99</strong></p>
-            <div class="rating mb-2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-primary btn-sm">Adicionar</button>
-              <button class="btn btn-primary btn-sm">Comprar</button>
+        <div class="card card-produto" th:each="produto : ${produtos}">
+          <img th:src="${produto.imgUrl}" class="card-img-top img-produto" th:alt="${produto.nome}">
+            <div class="card-body">
+              <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
+              <p class="card-text descricao-produto"th:text="${produto.descricao}"></p>
+              <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"></p>
+              <div class="rating mb-2">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary btn-sm">Adicionar</button>
+                <button class="btn btn-primary btn-sm">Comprar</button>
+              </div>
             </div>
           </div>
-        </div>
         <!-- Fim Listagem-->
       </div>
     </section>

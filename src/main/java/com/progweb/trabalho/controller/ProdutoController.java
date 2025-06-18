@@ -139,7 +139,11 @@ public class ProdutoController {
     }
     @PostMapping("/produtos/remover")
     public String removerProduto(@RequestParam("id") Long id) {
-        produtoService.deletar(id);
+        try{
+            produtoService.deletar(id);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         return "redirect:/perfil";
     }
 

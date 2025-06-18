@@ -1,5 +1,9 @@
 package com.progweb.trabalho.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.progweb.trabalho.model.Produto;
 import com.progweb.trabalho.repository.ProdutoRepository;
@@ -33,8 +38,32 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public void deletar(long id){
-        produtoRepository.deleteById(id);
+    private final String UPLOAD_DIR = "src/main/resources/static/uploads/";
+
+    @Transactional
+    public void deletar(long id) throws IOException{
+
+        //Deleta a imagem do produto salva nas pastas do projeto
+        Optional<Produto> produtoOptional = produtoRepository.findById(id);
+
+        if (produtoOptional.isPresent()) {
+            Produto produto = produtoOptional.get();
+            String imgUrlRelativo = produto.getImgUrl(); // Pega o caminho /uploads/nome-unico.jpg
+            String fileName = Paths.get(imgUrlRelativo).getFileName().toString();
+            Path filePath = Paths.get(UPLOAD_DIR + fileName);
+
+            produtoRepository.deleteById(id);
+            System.out.println("Registro do produto " + id + " deletado do banco de dados.");
+
+            //Deleta o arquivo de imagem do sistema de arquivos
+            if (Files.exists(filePath)) { // Verifica se o arquivo realmente existe antes de tentar deletar
+                Files.delete(filePath);
+                System.out.println("Arquivo de imagem deletado: " + filePath.toString());
+            } else {
+                System.out.println("Arquivo de imagem não encontrado no caminho: " + filePath.toString() + ". Pode já ter sido deletado ou o caminho está incorreto.");
+            }
+
+        }
     }
 
     public List<Produto> getProdutosAgrupadosPorColecaoENome() {

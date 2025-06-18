@@ -140,6 +140,12 @@ section .card .image img {
     color: #A09E75;
 }
 
+.preco-produto {
+    font-size: 17px;
+    font-weight: bold;
+    color: #A09E75;
+}
+
 .rating {
     color: #F5F2B4;
     font-size: 16px;
@@ -154,12 +160,14 @@ section .card .image img {
     transition: background-color 0.3s ease;
 }
 
+/* Caso necessário retornar um botão Comprar no meio do card Apenas
 .btn-outline-not {
     align-items: center;
     color: #33321D;
     border-color: #A09E75;
     margin: 0 35px;
 }
+*/
 
 .btn-outline-primary {
     color: #33321D;
