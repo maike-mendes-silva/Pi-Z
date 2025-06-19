@@ -1,16 +1,39 @@
-<div th:fragment="cadastrarProduto" class="cadastrarProduto">
+<div th:fragment="cadastrarProduto" class="cadastrarProduto lado-direito ">
     <h1 class="cormorant-bold">Cadastrar produto</h1>
-    <form class="d-flex flex-column gap-4 mt-4" th:action="@{/produtos}" method="POST" enctype="multipart/form-data">
-        <input type="text" name="nome" class="form-control" placeholder="nome do produto" required />
-        <input type="text" name="colecao" class="form-control" placeholder="coleção" required />
-        <input type="text" name="descricao" class="form-control" placeholder="descrição do produto" required />
-        <input type="number" name="tamanho" class="form-control" placeholder="tamanho" required />
-        <input type="number" step="0.01" name="preco" class="form-control" placeholder="preço" required />
-        <input type="number" name="quantidade" class="form-control" placeholder="quantidade" required />
+    <form class="d-flex flex-column gap-3" th:action="@{/produtos}" method="POST" enctype="multipart/form-data">
+        <div class="d-flex flex-wrap gap-2">
+            <div class="flex-grow-2"> <label for="nomeProduto" class="form-label visually-hidden">Nome do Produto</label>
+                <input type="text" id="nomeProduto" name="nome" class="form-control" placeholder="nome do produto" required />
+            </div>
+            <div class="flex-grow-3"> <label for="colecaoProduto" class="form-label visually-hidden">Coleção</label>
+                <input type="text" id="colecaoProduto" name="colecao" class="form-control" placeholder="coleção" required />
+            </div>
+            <div class="flex-grow-1"> 
+                <label for="descricaoProduto" class="form-label visually-hidden">Descrição do Produto</label>
+                <input type="text" id="descricaoProduto" name="descricao" class="form-control" placeholder="descrição do produto" required />
+            </div>
+        </div>
 
-        <label for="imagemProduto" class="form-label">Imagem do Produto:</label>
-        <input type="file" id="imagemProduto" name="imagem" class="form-control" accept="image/*" required />
+        <div class="d-flex flex-wrap gap-2">
+            <div class="flex-grow-1">
+                <label for="tamanhoProduto" class="form-label visually-hidden">Tamanho</label>
+                <input type="number" id="tamanhoProduto" name="tamanho" class="form-control" placeholder="tamanho" required />
+            </div>
+            <div class="flex-grow-1">
+                <label for="precoProduto" class="form-label visually-hidden">Preço</label>
+                <input type="number" step="0.01" id="precoProduto" name="preco" class="form-control" placeholder="preço" required />
+            </div>
+            <div class="flex-grow-1">
+                <label for="quantidadeProduto" class="form-label visually-hidden">Quantidade</label>
+                <input type="number" id="quantidadeProduto" name="quantidade" class="form-control" placeholder="quantidade" required />
+            </div>
+            <div>
+                <input type="file" id="imagemProduto" name="imagem" class="form-control" accept="image/*" required />
+                <label for="imagemProduto" class="form-label">Imagem do Produto:</label>
+            </div>
+        </div>
 
-        <button type="submit" class="b">Cadastrar</button>
-    </form>
+
+        
+        <button type="submit" class="btn btn-success w-100 gap-5">Cadastrar</button> </form>
 </div>

@@ -26,11 +26,11 @@ public class Usuario {
     
     @NotBlank(message = "Email é obrigatório")
     @Email
-    @Column
+    @Column(unique = true)
     private String email;
 
     @NotBlank(message = "Senha é obrigatório")
-    @Column
+    @Column(length = 60)
     private String senha;
 
     @Column

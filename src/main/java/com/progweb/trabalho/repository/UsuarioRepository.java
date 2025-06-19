@@ -8,6 +8,6 @@ import com.progweb.trabalho.model.Usuario;
 
 public interface UsuarioRepository extends CrudRepository <Usuario, Long>{
 
-    Optional<Usuario> findByEmailAndSenha(String email, String senha);
+    Optional<Usuario> findByEmail(String email);
 
 }
