@@ -16,7 +16,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Injetar o PasswordEncoder
+    private PasswordEncoder passwordEncoder; 
 
     /**
      * Salva um novo usuário ou atualiza um existente.
@@ -27,9 +27,6 @@ public class UsuarioService {
      * Ex: usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
      */
     public Usuario salvar(Usuario usuario) {
-        // Exemplo: codificar a senha antes de salvar um NOVO usuário.
-        // Se este método é usado tanto para criação quanto para atualização,
-        // você precisará de uma lógica para verificar se a senha já está codificada ou se foi alterada.
         if (usuario.getId() == null || usuario.getSenha() != null && !usuario.getSenha().startsWith("$2a$")) { // Verifica se é novo ou senha não codificada
              usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         }

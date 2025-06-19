@@ -90,7 +90,7 @@ public class ProdutoController {
             e.printStackTrace();
             model.addAttribute("erro", "Erro ao fazer upload da imagem: " + e.getMessage());
             return "cadastrarProduto"; // Retorna para a view do formulário com erro
-        } catch (Exception e) { // Capture outras exceções ao salvar no DB, por exemplo
+        } catch (Exception e) { // Captura outras exceções ao salvar no DB, por exemplo
             e.printStackTrace();
             model.addAttribute("erro", "Erro ao cadastrar produto: " + e.getMessage());
             return "cadastrarProduto";
