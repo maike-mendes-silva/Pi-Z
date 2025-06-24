@@ -1,0 +1,321 @@
+* {
+    font-family: 'Cormorant', serif;
+    color: #33321D;
+}
+
+.cormorant-bold {
+    font-family: 'Cormorant', serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+}
+
+
+.rodape{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: linear-gradient(to bottom, #33321D, #454428, #51502e);
+    border-color: #F5F2B4;
+    border-radius: 2px;
+  }
+  
+  .rodape .servicos{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  .servicos p{
+    color: #F5F2B4;
+    font-size: 25px;
+  }
+  
+  .servicos a{
+    font-size: 20px;
+    color: #F5F2B4;
+    text-decoration: none;
+  }
+  
+  .servicos a:hover{
+    color: #fefffe;
+  }
+  
+  .rodape .suporte{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  .suporte p{
+    color: #F5F2B4;
+    font-size: 25px;
+  }
+  
+  .suporte a{
+    font-size: 20px;
+    color: #F5F2B4;
+    text-decoration: none;
+  }
+  
+  .suporte a:hover{
+    color: #fefefe;
+  }
+  
+  .rodape .termos{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+  
+  .termos p{
+    color: #F5F2B4;
+    font-size: 25px;
+  }
+  
+  .termos a{
+    font-size: 20px;
+    color: #F5F2B4;
+    text-decoration: none;
+  }
+  
+  .termos a:hover{
+    color: #fefefe;
+  }
+
+/* Container principal do produto */
+.product-container {
+    display: flex;
+    background-color: #FEFEFE; /* Fundo do container, combinando com o corpo */
+    border-radius: 8px; /* Cantos arredondados */
+    margin: 5px;
+    border-color: #F6ED63;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 1000px; /* Largura máxima */
+    width: 90%; /* Largura responsiva */
+    overflow: hidden; /* Garante que o conteúdo não transborde */
+}
+
+/* Seção da imagem do produto */
+.product-image-section {
+    flex: 1; /* Ocupa o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Wrapper para a imagem principal e setas de navegação */
+.main-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Ajuste o tamanho máximo da imagem principal */
+    margin-bottom: 20px;
+}
+
+/* Estilo da imagem principal */
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Galeria de miniaturas */
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as miniaturas */
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que as miniaturas quebrem a linha */
+}
+
+/* Estilo de cada miniatura */
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #A09E75; /* Borda com cor da paleta */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s; /* Animação ao passar o mouse */
+}
+
+.thumbnail:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Seção de detalhes do produto */
+.product-details-section {
+    flex: 1; /* Ocupa o espaço disponível */
+    padding: 40px;
+    background-color: #F5F2B4; /* Fundo da seção de detalhes */
+    color: #33321D; /* Cor do texto principal dos detalhes */
+}
+
+/* Título do produto */
+.product-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #33321D; /* Cor do título */
+}
+
+/* Subtítulo do produto */
+.product-subtitle {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #33321D; /* Cor do subtítulo */
+}
+
+/* Informações de lançamento */
+.release-info {
+    font-size: 0.9em;
+    color: #A09E75; /* Cor para informações secundárias */
+    margin-bottom: 30px;
+}
+
+/* Rótulo de tamanhos */
+.sizes-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Opções de tamanho */
+.size-options {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as opções de tamanho */
+    margin-bottom: 30px;
+}
+
+/* Estilo de cada opção de tamanho */
+.size-option {
+    border: 1px solid #A09E75; /* Borda */
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #F5F2B4; /* Fundo da opção */
+    color: #33321D; /* Cor do texto */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+
+/* Estilo da opção de tamanho selecionada */
+.size-option.selected {
+    background-color: #33321D; /* Fundo escuro */
+    color: #F6ED63; /* Texto claro */
+    border-color: #33321D;
+}
+
+/* Preço do produto */
+.price {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #33321D; /* Cor do preço */
+}
+
+/* Informações de parcelamento */
+.installments {
+    font-size: 0.9em;
+    color: #A09E75; /* Cor para parcelas */
+    margin-bottom: 30px;
+}
+
+/* Ações (botões) */
+.actions {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-bottom: 30px;
+}
+
+/* Estilo do botão "Comprar" */
+.buy-button {
+    background-color: #33321D; /* Cor de fundo escura */
+    color: #F6ED63; /* Cor do texto clara */
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.buy-button:hover {
+    background-color: #A09E75; /* Cor ao passar o mouse */
+}
+
+/* Estilo do botão "Adicionar ao carrinho" */
+.add-to-cart-button {
+    background-color: #F6ED63; /* Cor de fundo clara */
+    color: #33321D; /* Cor do texto escura */
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.add-to-cart-button:hover {
+    background-color: #A09E75; /* Cor ao passar o mouse */
+}
+
+/* Informações de entrega */
+.delivery-info {
+    font-size: 0.9em;
+    color: #A09E75; /* Cor para informações de entrega */
+}
+
+/* Setas de navegação da imagem */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo semi-transparente */
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 10px;
+    color: #33321D; /* Cor da seta */
+    z-index: 10;
+}
+
+.arrow.left {
+    left: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.arrow.right {
+    right: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* Media query para telas menores (responsividade) */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column; /* Coloca os elementos em coluna em telas pequenas */
+    }
+
+    .product-details-section {
+        padding: 20px; /* Reduz o padding */
+    }
+
+    .product-title {
+        font-size: 2em; /* Reduz o tamanho do título */
+    }
+
+    .product-subtitle {
+        font-size: 1.5em; /* Reduz o tamanho do subtítulo */
+    }
+
+    .actions {
+        flex-direction: column; /* Botões em coluna */
+        gap: 15px;
+    }
+}
+
+.container-produto{
+    display: flex;
+    margin-top:120px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}

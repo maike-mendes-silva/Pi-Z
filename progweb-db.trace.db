@@ -1879,3 +1879,5 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: /home/user/Pi-Z/
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 100 more
+2025-06-24 13:16:10.324631Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

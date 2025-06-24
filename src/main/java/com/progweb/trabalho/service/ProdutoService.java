@@ -78,4 +78,9 @@ public class ProdutoService {
             .collect(Collectors.toList()); // Coleta de volta para uma lista
     }
 
+    //Sem agrupar
+    public List<Produto> acharPorNomeColecao(String nome, String colecao) {
+        return produtoRepository.findByNomeAndColecao(nome, colecao); // Busca todos os produtos
+    }
+
 }

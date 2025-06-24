@@ -5,10 +5,14 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +20,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -145,6 +151,41 @@ public class ProdutoController {
             e.printStackTrace();
         }
         return "redirect:/perfil";
+    }
+
+    @GetMapping("/produto/{id}")
+    public String exibirDetalhesProduto(@PathVariable Long id, Model model) {
+        
+        Optional<Produto> produtoOptional = produtoService.acharPorId(id);
+
+        if (produtoOptional.isPresent()) {
+            Produto produto = produtoOptional.get();
+            model.addAttribute("produto", produto);
+
+            List<Produto> tamanhosDisponiveis = produtoService.acharPorNomeColecao(produto.getNome(), produto.getColecao());
+
+            // Filtrar para remover tamanhos com quantidade 0 (se necessário)
+            tamanhosDisponiveis.removeIf(p -> p.getQuantidade() <= 0); // Supondo que Produto tenha getQuantidade()
+
+            model.addAttribute("tamanhosDisponiveis", tamanhosDisponiveis);
+
+            //Calcular previsão de entrega
+
+            LocalDate dataAtual = LocalDate.now();
+            LocalDate dataInicioPrevisao = dataAtual.plusWeeks(1);
+            LocalDate dataFimPrevisao = dataInicioPrevisao.plusWeeks(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d 'de' MMM.", new Locale("pt", "BR"));
+
+            String inicioFormatado = dataInicioPrevisao.format(formatter);
+            String fimFormatado = dataFimPrevisao.format(formatter);
+
+            model.addAttribute("previsaoInicio", inicioFormatado);
+            model.addAttribute("previsaoFim", fimFormatado);
+
+            return "detalhesProduto";
+        } else {
+            return "redirect:/home";
+        }
     }
 
 }
