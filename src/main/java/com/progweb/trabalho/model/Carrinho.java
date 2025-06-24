@@ -1,5 +1,6 @@
 package com.progweb.trabalho.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +29,21 @@ public class Carrinho {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemCarrinho> itens;
+    private List<ItemCarrinho> itens = new ArrayList<>(); 
+
+    public double calcularTotal() {
+        if (this.itens == null || this.itens.isEmpty()) {
+            return 0; 
+        }
+
+        double total = 0;
+        for (ItemCarrinho item : itens) {
+            double precoItem = item.getPrecoUnitarioNoMomentoDaAdicao(); 
+            double quantidadeItem = item.getQuantidade(); 
+
+            total = total + (precoItem * quantidadeItem); 
+        }
+        return total;
+    }
 
 }

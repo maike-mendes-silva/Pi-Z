@@ -41,9 +41,11 @@ public class CarrinhoService {
         Optional<Carrinho> carrinhoOptional = carrinhoRepository.findByUsuario(usuario);
 
         if (carrinhoOptional.isPresent()) {
+            System.out.println("====== Encontrou um carrinho!! ======");
             return carrinhoOptional.get(); // Retorna o carrinho existente
         } else {
             // Se não encontrou, cria um novo carrinho e o associa ao usuário
+            System.out.println("====== Não encontrou um carrinho!! ======");
             Carrinho novoCarrinho = new Carrinho();
             novoCarrinho.setUsuario(usuario);
             return carrinhoRepository.save(novoCarrinho);

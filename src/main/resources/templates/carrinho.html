@@ -18,10 +18,61 @@
   <!-- Insere o cabeçalho separado em outro arquivo -->
   <header th:replace="~{fragments/menuNavegacao :: menuNavegacao}"></header>
   
-  <div class="container">
-    <div class="container cart-container d-flex align-items-center justify-content-center flex-column mt-5 pt-5">
-      <h2 class="titulo-carrinho cormorant-bold">CARRINHO</h2>
-      <th:block th:replace="~{fragments/carrinho :: carrinho}"></th:block>
+  <div class="cart-wrapper">
+    <h1 class="main-title">Seu Carrinho de Compras</h1>
+
+    <div class="cart-layout">
+        <!-- Seção dos Produtos no Carrinho -->
+        <section class="products-section">
+          <h2 class="section-heading">Produtos Selecionados</h2>
+
+          <div th:if="${carrinho != null and not #lists.isEmpty(carrinho.itens)}">
+              <article class="product-card" th:each="item : ${carrinho.itens}">
+                  <img th:src="${item.produto.imgUrl}" th:alt="${item.produto.nome}" class="product-image">
+                  <div class="product-info">
+                      <h3 class="product-name" th:text="${item.produto.nome}"></h3>
+                      <p class="product-quantity">Quantidade: <span th:text="${item.quantidade}"></span></p>
+                      <p class="product-price"
+                         th:text="'R$ ' + ${#numbers.formatDecimal(item.quantidade * item.precoUnitarioNoMomentoDaAdicao, 1, 'COMMA', 2, 'POINT')}"></p>
+                  </div>
+                  <form th:action="@{/carrinho/remover}" method="post">
+                      <input type="hidden" name="itemId" th:value="${item.id}" />
+                      <button type="submit" class="remove-button">Remover</button>
+                  </form>
+              </article>
+          </div>
+          <div th:if="${carrinho == null or #lists.isEmpty(carrinho.itens)}">
+              <p class="text-center">Seu carrinho está vazio. Adicione alguns produtos!</p>
+              <div class="text-center">
+                  <a th:href="@{/home}" class="btn btn-primary">Voltar às Compras</a>
+              </div>
+          </div>
+      </section>
+
+        <!-- Seção de Detalhes do Preço -->
+        <aside class="summary-section">
+          <h2 class="section-heading">Resumo do Pedido</h2>
+
+          <div class="summary-line">
+              <span class="summary-label">Subtotal dos Produtos:</span>
+              <span class="summary-value"
+                    th:text="'R$ ' + ${#numbers.formatDecimal(carrinho != null ? carrinho.calcularTotal() : 0.0, 1, 'COMMA', 2, 'POINT')}">R$ 0,00</span>
+          </div>
+
+          <div class="summary-line">
+              <span class="summary-label">Frete:</span>
+              <span class="summary-value free-shipping">GRÁTIS</span> </div>
+
+          <hr class="summary-divider">
+
+          <div class="summary-total-line">
+              <span class="summary-total-label">Total a Pagar:</span>
+              <span class="summary-total-value"
+                    th:text="'R$ ' + ${#numbers.formatDecimal(carrinho != null ? carrinho.calcularTotal() : 0.0, 1, 'COMMA', 2, 'POINT')}">R$ 0,00</span>
+          </div>
+
+          <button class="checkout-button" th:disabled="${carrinho == null or #lists.isEmpty(carrinho.itens)}">Finalizar Compra</button>
+      </aside>
     </div>
   </div>
   
