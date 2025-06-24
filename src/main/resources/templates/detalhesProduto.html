@@ -50,15 +50,17 @@
                          th:classappend="${tamanhoProduto.id == produto.id} ? 'selected' : ''"
                          th:text="${tamanhoProduto.tamanho}"
                          class="size-option"
-                         data-produto-id="${tamanhoProduto.id}">
+                         th:data-produto-id="${tamanhoProduto.id}">
                         </div>
                 </div>
     
                 <p class="price" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"></p>
     
                 <div class="actions">
-                    <!-- Botão de compra -->
-                    <button class="buy-button">Comprar</button>
+                    <form th:action="@{/carrinho/adicionar}" method="post">
+                        <input type="hidden" name="idProdutoEscolhido" id="tamanhoSelecionadoInput"/>
+                        <button type="submit" class="buy-button">Comprar</button>
+                    </form>
                 </div>
     
                 <p class="delivery-info">
@@ -67,28 +69,53 @@
                 </p>
             </div>
         </div>
-    
-        <script>
-            // Adiciona um evento de escuta para quando o DOM estiver completamente carregado
-            document.addEventListener('DOMContentLoaded', () => {
-                // Seleciona todas as opções de tamanho
-                const sizeOptions = document.querySelectorAll('.size-option');
-                // Itera sobre cada opção de tamanho para adicionar um evento de clique
-                sizeOptions.forEach(option => {
-                    option.addEventListener('click', () => {
-                        // Remove a classe 'selected' de todas as opções
-                        sizeOptions.forEach(opt => opt.classList.remove('selected'));
-                        // Adiciona a classe 'selected' à opção clicada
-                        option.classList.add('selected');
-                    });
-                });
-            });
-        </script>
     </div>
+
+    <!-- Insere o rodapé separado em outro arquivo -->
+    <footer th:replace="~{fragments/rodape :: rodape}"></footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Adiciona um evento de escuta para quando o DOM estiver completamente carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todas as opções de tamanho
+            const sizeOptions = document.querySelectorAll('.size-option');
+            // Seleciona o input oculto onde o tamanho selecionado será armazenado
+            const tamanhoSelecionadoInput = document.getElementById('tamanhoSelecionadoInput');
     
-    <!-- Insere o rodapé separado em outro arquivo -->
-    <footer th:replace="~{fragments/rodape :: rodape}"></footer>
+            // Função para atualizar a seleção visual (classe 'selected')
+            // e o valor do input oculto com o ID da variação do produto.
+            function updateSelectedSize(selectedElement) {
+                // Remove a classe 'selected' de TODAS as opções de tamanho
+                sizeOptions.forEach(option => option.classList.remove('selected'));
+                
+                // Adiciona a classe 'selected' APENAS à opção clicada/selecionada
+                selectedElement.classList.add('selected');
+                tamanhoSelecionadoInput.value = selectedElement.dataset.produtoId;
+            }
+    
+            // Adiciona um listener de clique a CADA opção de tamanho
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Quando uma opção é clicada, chamamos a função para atualizar
+                    updateSelectedSize(this);
+                });
+            });
+    
+            // Lógica para definir um tamanho padrão ao carregar a página:
+            // 1. Tenta encontrar uma opção que já tenha a classe 'selected' (definida pelo Thymeleaf)
+            const defaultSelected = document.querySelector('.size-option.selected');
+            
+            if (defaultSelected) {
+                // Se encontrou, atualiza o estado (visual e input oculto) para essa opção
+                updateSelectedSize(defaultSelected);
+            } else if (sizeOptions.length > 0) {
+                // Se NENHUMA opção tem 'selected' (e há opções de tamanho disponíveis),
+                // seleciona a PRIMEIRA opção como padrão.
+                updateSelectedSize(sizeOptions[0]);
+            }
+        });
+    </script>
 </body>

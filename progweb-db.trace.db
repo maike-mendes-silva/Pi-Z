@@ -1881,3 +1881,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: /home/user/Pi-Z/
 	... 100 more
 2025-06-24 13:16:10.324631Z jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-24 15:01:51.197949Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-24 15:17:11.215386Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

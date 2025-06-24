@@ -1,7 +1,5 @@
 package com.progweb.trabalho.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,9 +28,5 @@ public class ItemCarrinho {
     private Produto produto;
 
     private int quantidade;
-    private BigDecimal precoUnitarioNoMomentoDaAdicao;
-
-    public BigDecimal getSubTotal() {
-        return precoUnitarioNoMomentoDaAdicao.multiply(new BigDecimal(quantidade));
-    }
+    private double precoUnitarioNoMomentoDaAdicao;
 }

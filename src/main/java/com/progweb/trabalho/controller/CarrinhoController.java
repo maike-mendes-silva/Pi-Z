@@ -1,16 +1,23 @@
 package com.progweb.trabalho.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.progweb.trabalho.model.Carrinho;
+import com.progweb.trabalho.model.Produto;
 import com.progweb.trabalho.model.Usuario;
 import com.progweb.trabalho.service.CarrinhoService;
+import com.progweb.trabalho.service.ProdutoService;
 import com.progweb.trabalho.service.UsuarioService;
 
 @Controller
@@ -22,6 +29,9 @@ public class CarrinhoController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     @GetMapping
     public String index(Authentication authentication, Model model) {
@@ -55,6 +65,28 @@ public class CarrinhoController {
         }
 
         return "carrinho";
+    }
+
+    @PostMapping("/adicionar")
+    public String adicionarAoCarrinho(
+            Authentication authentication,
+            @RequestParam("idProdutoEscolhido") Long idProdutoEscolhido,
+            RedirectAttributes redirectAttributes) {
+
+        Optional<Produto> produtoParaCarrinho = produtoService.acharPorId(idProdutoEscolhido);
+
+        if(produtoParaCarrinho.isEmpty()){
+            redirectAttributes.addFlashAttribute("mensagemErro", "Produto não encontrado.");
+            return "redirect:/home";
+        }
+
+        String emailUsuario = authentication.getName();
+        carrinhoService.adicionarItem(emailUsuario, produtoParaCarrinho.get(), 1);
+
+        redirectAttributes.addFlashAttribute("mensagemSucesso", "Produto adicionado ao carrinho!");
+
+        // 4. Redirecionar para a página do carrinho ou para a mesma página de detalhes
+        return "redirect:/carrinho";
     }
 
 }
