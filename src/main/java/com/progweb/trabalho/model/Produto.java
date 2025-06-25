@@ -1,9 +1,14 @@
 package com.progweb.trabalho.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.*;
 
 import lombok.AllArgsConstructor;
@@ -38,5 +43,8 @@ public class Produto {
 
     @Min(value = 0, message = "Quantidade não pode ser negativa")
     private int quantidade;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<ItemCarrinho> itensCarrinho = new ArrayList<>();
 
 }
