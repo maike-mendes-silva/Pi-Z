@@ -42,11 +42,14 @@
             style="max-width: 700px; height: 60%;">
             <div class="w-50 text-center">
                 <h1 class="cormorant-bold">Criar cadastro</h1>
-                <form class="d-flex flex-column gap-4 mt-4" th:action="@{/cadastro/salvar}" method="POST">
-                    <input type="text" name="nomeCompleto" class="form-control" placeholder="Nome completo" required />
-                    <input type="email" name="email" class="form-control" placeholder="E-mail" required />
-                    <input type="password" name="senha" class="form-control" placeholder="Nova senha" required />
-                    <input type="password" class="form-control" placeholder="Repita sua senha"
+                <form class="d-flex flex-column gap-4 mt-4" th:action="@{/cadastro/salvar}" method="POST" th:object="${usuario}">
+                  <div th:if="${mensagemErro}" class="alert alert-danger" role="alert">
+                    <p class="mb-0" th:text="${mensagemErro}"></p>
+                  </div>
+                    <input type="text" th:field="*{nomeCompleto}" class="form-control" placeholder="Nome completo" required />
+                    <input type="email" th:field="*{email}" class="form-control" placeholder="E-mail" required />
+                    <input type="password" th:field="*{senha}" class="form-control" placeholder="Nova senha" required />
+                    <input type="password" name="repetirSenha" class="form-control" placeholder="Repita sua senha"
                         required />
                     <button type="submit" class="btn btn-success w-100">Criar</button>
                 </form>

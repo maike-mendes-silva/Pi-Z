@@ -1,11 +1,13 @@
 package com.progweb.trabalho.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
@@ -20,6 +22,9 @@ public class CadastroController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     //Redireciona para a tela cadastro
     @GetMapping
     public String novoCadastro(Model model){
@@ -30,7 +35,14 @@ public class CadastroController {
 
     //Após clicar no botão de cadastro, salva o usuário no banco
     @PostMapping("/salvar")
-    public String salvarCadastro(@ModelAttribute Usuario usuario, RedirectAttributes attributes){
+    public String salvarCadastro(@ModelAttribute Usuario usuario, @RequestParam("repetirSenha") String repetirSenha, RedirectAttributes attributes, Model model){
+
+        //Validação de senhas
+        if(!usuario.getSenha().equals(repetirSenha)){
+            model.addAttribute("mensagemErro", "As senhas não coincidem.");
+            model.addAttribute("usuario", usuario);
+            return "cadastro";
+        }
 
         //O primeiro usuário criado é ADMIN
         long totalUsuarios = usuarioService.contarTotalUsuarios();
@@ -39,6 +51,8 @@ public class CadastroController {
         } else{
             usuario.setEhAdmin(false);
         }
+
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         
         this.usuarioService.salvar(usuario);
         attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
