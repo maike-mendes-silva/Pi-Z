@@ -41,11 +41,11 @@ public class CarrinhoService {
         Optional<Carrinho> carrinhoOptional = carrinhoRepository.findByUsuario(usuario);
 
         if (carrinhoOptional.isPresent()) {
-            System.out.println("====== Encontrou um carrinho!! ======");
+            //System.out.println("====== Encontrou um carrinho!! ======");
             return carrinhoOptional.get(); // Retorna o carrinho existente
         } else {
             // Se não encontrou, cria um novo carrinho e o associa ao usuário
-            System.out.println("====== Não encontrou um carrinho!! ======");
+            //System.out.println("====== Não encontrou um carrinho!! ======");
             Carrinho novoCarrinho = new Carrinho();
             novoCarrinho.setUsuario(usuario);
             return carrinhoRepository.save(novoCarrinho);
@@ -82,6 +82,24 @@ public class CarrinhoService {
 
         carrinhoRepository.save(carrinho); // Salva o carrinho (para garantir que todas as associações e updates sejam persistidos)
 
+    }
+
+    @Transactional
+    public void removerItem(String emailUsuario, Long itemId) {
+    
+        Usuario usuario = usuarioRepository.findByEmail(emailUsuario)
+                                         .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
+
+        Carrinho carrinho = obterOuCriarCarrinhoParaUsuario(usuario);
+
+        ItemCarrinho itemParaRemover = carrinho.getItens().stream()
+            .filter(item -> item.getId().equals(itemId))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Item com ID " + itemId + " não encontrado no carrinho do usuário."));
+
+        carrinho.getItens().remove(itemParaRemover);
+        carrinhoRepository.save(carrinho);
+        
     }
 
 }

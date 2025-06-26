@@ -89,4 +89,24 @@ public class CarrinhoController {
         return "redirect:/carrinho";
     }
 
+    @PostMapping("/remover")
+    public String removerItemDoCarrinho(
+            @RequestParam("itemId") Long itemId,
+            Authentication authentication,   
+            RedirectAttributes redirectAttributes) { 
+
+        String emailUsuario = authentication.getName();
+
+        try {
+            carrinhoService.removerItem(emailUsuario, itemId);
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Item removido do carrinho com sucesso!");
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Erro ao remover item: " + e.getMessage());
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensagemErro", "Ocorreu um erro inesperado ao remover o item.");
+        }
+
+        return "redirect:/carrinho";
+    }
+
 }
