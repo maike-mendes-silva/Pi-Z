@@ -102,4 +102,15 @@ public class CarrinhoService {
         
     }
 
+    @Transactional
+    public void limparCarrinho(String emailUsuario) {
+        Usuario usuario = usuarioRepository.findByEmail(emailUsuario)
+                                         .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
+
+        Carrinho carrinho = obterOuCriarCarrinhoParaUsuario(usuario);
+        carrinho.getItens().clear();
+        carrinhoRepository.save(carrinho);
+    }
+
+
 }

@@ -30,6 +30,16 @@
   <!-- Insere o cabeçalho separado em outro arquivo -->
   <header th:replace="~{fragments/menuNavegacao :: menuNavegacao}"></header>
 
+  <!-- Alerta Toast -->
+  <div th:if="${mensagemSucesso}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 7rem; right: 1rem;" data-bs-autohide="true"
+  data-bs-delay="7000">
+    <div class="toast-header">
+      <strong class="me-auto">Aviso</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+    </div>
+    <div class="toast-body" th:text="${mensagemSucesso}"></div>
+  </div>
+
   <section class="container-fluid d-flex flex-column pt-5 ps-0 pe-0">
     <div class="home-bg d-flex flex-column justify-content-center align-items-center pt-5" style="height: 250px;">
       <h1 class="cormorant-italic">Bem vindo a Pi Z</h1>
@@ -105,6 +115,17 @@
         <!-- Fim Listagem-->
       </div>
     </section>
+
+    <!-- Para que o alerta toast saia da tela depois de 7 segundos -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const toastEl = document.querySelector('.toast');
+          if (toastEl) {
+              const toast = new bootstrap.Toast(toastEl);
+              toast.show();
+          }
+      });
+  </script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

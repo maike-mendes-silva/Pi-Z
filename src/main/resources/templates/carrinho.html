@@ -71,7 +71,11 @@
                     th:text="'R$ ' + ${#numbers.formatDecimal(carrinho != null ? carrinho.calcularTotal() : 0.0, 1, 'COMMA', 2, 'POINT')}">R$ 0,00</span>
           </div>
 
-          <button class="checkout-button" th:disabled="${carrinho == null or #lists.isEmpty(carrinho.itens)}">Finalizar Compra</button>
+          <form th:action="@{/carrinho/limparCarrinho}" method="post">
+            <button type="submit" class="checkout-button" th:disabled="${carrinho == null or #lists.isEmpty(carrinho.itens)}">
+                Finalizar Compra
+            </button>
+        </form>
       </aside>
     </div>
   </div>
