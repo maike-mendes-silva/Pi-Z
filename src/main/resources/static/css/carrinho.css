@@ -167,7 +167,10 @@ input.form-control {
   padding: 25px;
   border-radius: 10px; /* Cantos arredondados */
   border: 1px solid var(--border-color); /* Borda com a cor de margem */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra leve */
+  box-shadow: 0 
+  2px 8px rgba(0, 0, 0, 0.05); /* Sombra leve */
+  border: 2px solid #f1e65e;
+  border-radius: 10px;
 }
 
 .products-section {

@@ -1962,3 +1962,13 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [
 DELETE * FROM usuario WHERE id > 8 [42001-224]
 2025-06-27 19:36:19.809341Z jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:41:33.525167Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:41:33.532981Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:54:51.001781Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:55:08.519739Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:56:18.516403Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
