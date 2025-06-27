@@ -1941,3 +1941,24 @@ org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-22
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
 2025-06-27 18:11:53.128983Z jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:10:06.356081Z jdbc[23]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:11:02.911817Z jdbc[33]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]SELECY * FROM usuario"; expected "SAVEPOINT, SCRIPT, SHUTDOWN"; SQL statement:
+SELECY * FROM usuario [42001-224]
+2025-06-27 19:12:57.161544Z jdbc[23]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-27 19:35:32.801395Z jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET FROM usuario WHERE id > 8"; expected "DELETE, DROP"; SQL statement:
+DELET FROM usuario WHERE id > 8 [42001-224]
+2025-06-27 19:35:40.385549Z jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET FROM usuario WHERE id > 8"; expected "DELETE, DROP"; SQL statement:
+DELET FROM usuario WHERE id > 8 [42001-224]
+2025-06-27 19:35:46.911645Z jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET * FROM usuario WHERE id > 8"; expected "DELETE, DROP"; SQL statement:
+DELET * FROM usuario WHERE id > 8 [42001-224]
+2025-06-27 19:35:50.873003Z jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM usuario WHERE id > 8"; expected "identifier"; SQL statement:
+DELETE * FROM usuario WHERE id > 8 [42001-224]
+2025-06-27 19:36:19.809341Z jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

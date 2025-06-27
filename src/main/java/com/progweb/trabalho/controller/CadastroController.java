@@ -1,7 +1,6 @@
 package com.progweb.trabalho.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,9 +20,6 @@ public class CadastroController {
 
     @Autowired
     private UsuarioService usuarioService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     //Redireciona para a tela cadastro
     @GetMapping
@@ -52,7 +48,7 @@ public class CadastroController {
             usuario.setEhAdmin(false);
         }
 
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        usuario.setSenha((usuario.getSenha()));
         
         this.usuarioService.salvar(usuario);
         attributes.addFlashAttribute("mensagem", "Usuário cadastrado com sucesso!");
