@@ -36,4 +36,7 @@ public class Usuario {
     @Column
     private boolean ehAdmin;
 
+    @Column
+    private String imgUrl; 
+
 }

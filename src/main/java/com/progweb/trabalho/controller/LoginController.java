@@ -24,8 +24,6 @@ public class LoginController {
         return "login";
     }
 
-    
-
     @PostMapping("/sair")
     public String sair(HttpSession session){
         session.invalidate();

@@ -1,5 +1,6 @@
 package com.progweb.trabalho.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.progweb.trabalho.model.Produto;
 import com.progweb.trabalho.model.Usuario;
 import com.progweb.trabalho.repository.CarrinhoRepository;
 import com.progweb.trabalho.repository.ItemCarrinhoRepository;
+import com.progweb.trabalho.repository.ProdutoRepository;
 import com.progweb.trabalho.repository.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -26,6 +28,9 @@ public class CarrinhoService {
 
     @Autowired
     private ItemCarrinhoRepository itemCarrinhoRepository;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     public Carrinho acharPorId(long id){
         return carrinhoRepository.findByUsuarioId(id);
@@ -103,11 +108,42 @@ public class CarrinhoService {
     }
 
     @Transactional
-    public void limparCarrinho(String emailUsuario) {
+    public void finalizarCompra(String emailUsuario) {
         Usuario usuario = usuarioRepository.findByEmail(emailUsuario)
                                          .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado."));
 
         Carrinho carrinho = obterOuCriarCarrinhoParaUsuario(usuario);
+
+        // Decrementar a quantidade do produto em estoque para cada item do carrinho**
+        if (carrinho != null && carrinho.getItens() != null) {
+            // Cria uma cópia da coleção para evitar ConcurrentModificationException
+            List<ItemCarrinho> itensDoCarrinho = carrinho.getItens();
+            
+            for (ItemCarrinho item : itensDoCarrinho) {
+                Produto produto = item.getProduto(); 
+                int quantidadeNoCarrinho = item.getQuantidade();
+
+                if (produto != null) {
+                    //Busca o produto novamente do banco para garantir que você tem a versão mais recente
+                    Optional<Produto> produtoOpt = produtoRepository.findById(produto.getId());
+                    if (produtoOpt.isPresent()) {
+                        Produto produtoEmEstoque = produtoOpt.get();
+                        
+                        // Verifica se há estoque suficiente antes de decrementar
+                        if (produtoEmEstoque.getQuantidade() >= quantidadeNoCarrinho) {
+                            produtoEmEstoque.setQuantidade(produtoEmEstoque.getQuantidade() - quantidadeNoCarrinho);
+                            produtoRepository.save(produtoEmEstoque);
+                            //System.out.println("Produto " + produtoEmEstoque.getNome() + " quantidade atualizada para: " + produtoEmEstoque.getQtd());
+                        } else {
+                            System.err.println("Estoque insuficiente para o produto: " + produtoEmEstoque.getNome() + ". Disponível: " + produtoEmEstoque.getQuantidade() + ", Necessário: " + quantidadeNoCarrinho);
+                        }
+                    } else {
+                        System.err.println("Produto com ID " + produto.getId() + " não encontrado no banco de dados.");
+                    }
+                }
+            }
+        }
+
         carrinho.getItens().clear();
         carrinhoRepository.save(carrinho);
     }

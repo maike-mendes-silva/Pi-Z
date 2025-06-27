@@ -374,3 +374,13 @@ input.form-control {
       padding: 12px 20px;
   }
 }
+ 
+.btn-primary {
+  background-color: #33321D;
+  border-color: #33321D;
+}
+
+.btn-primary:hover {
+  background-color: #383720;
+  border-color: #383720;
+}

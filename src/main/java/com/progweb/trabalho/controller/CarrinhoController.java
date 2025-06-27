@@ -109,10 +109,10 @@ public class CarrinhoController {
         return "redirect:/carrinho";
     }
 
-    @PostMapping("/limparCarrinho")
-    public String limparCarrinho(Authentication authentication, RedirectAttributes redirectAttributes) {
+    @PostMapping("/finalizarCompra")
+    public String finalizarCompra(Authentication authentication, RedirectAttributes redirectAttributes) {
         String emailUsuario = authentication.getName();
-        carrinhoService.limparCarrinho(emailUsuario);
+        carrinhoService.finalizarCompra(emailUsuario);
         redirectAttributes.addFlashAttribute("mensagemSucesso", "Pedido criado com sucesso!");
         return "redirect:/";
     }

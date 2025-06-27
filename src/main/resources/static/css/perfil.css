@@ -19,7 +19,7 @@ body, html {
 
 .Container {
   display: flex;
-  margin-top: 11vh;
+  margin-top: 14vh;
   flex-grow: 1;
 }
 
@@ -153,4 +153,30 @@ body, html {
 
 .termos a:hover{
   color: #fefefe;
+}
+
+
+.btn-outline-primary {
+  color: #33321D;
+  border-color: #A09E75;
+}
+
+.btn-outline-primary:hover {
+  background-color: #A09E75;
+  color: #FEFFFE;
+}
+
+.btn-outline-not:hover {
+  background-color: #A09E75;
+  color: #FEFFFE;
+}
+
+.btn-primary {
+  background-color: #33321D;
+  border-color: #33321D;
+}
+
+.btn-primary:hover {
+  background-color: #383720;
+  border-color: #383720;
 }

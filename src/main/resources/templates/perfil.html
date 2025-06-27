@@ -41,34 +41,55 @@
 
   <div class="Container d-flex">
     <section class="lado-esquerdo">
-      <div class="card-perfil">
-        <div class="foto"></div>
-        <h3 th:text="${usuario.nomeCompleto}"></h3>
-        <p th:text="${usuario.email}"></p>
-        
-        <form th:action="@{/logout}" method="post">
-          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-          <button type="submit" class="btn btn-outline-danger d-flex" >Sair</button>
-        </form>
-      </div>
+        <div class="card-perfil d-flex justify-content-center flex-column align-items-center">
+            <div class="foto">
+              <img th:if="${usuario.imgUrl != null and !usuario.imgUrl.isEmpty()}"
+                th:src="${usuario.imgUrl}"
+                alt="Foto de perfil do usuário"
+                class="img-fluid rounded-circle"
+                style="width: 100%; height: 100%; object-fit: cover;"> 
+              <img th:unless="${usuario.imgUrl != null and !usuario.imgUrl.isEmpty()}"
+                src="../img/user_icon.png" 
+                alt="Ícone de perfil padrão"
+                class="img-fluid"
+                style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <h3 th:text="${usuario.nomeCompleto}"></h3>
+            <p th:text="${usuario.email}"></p>
+
+            <form th:action="@{/logout}" class="w-45" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="btn btn-outline-danger d-flex" >Sair</button>
+            </form>
+        </div>
     </section>
 
-    <section class="lado-direito flex-grow">
-      <!-- <th:block th:replace="~{fragments/profileDetailsForm :: profileDetailsForm (usuario=${usuario}, successMessage=${successMessage}, errorMessage=${errorMessage})}"/> -->
-      
-      <hr/> <th:block th:if="!${usuario.ehAdmin}">
-        <th:block th:replace="~{fragments/alterarSenhaUsuario :: alterarSenhaUsuario (successMessage=${successMessage}, errorMessage=${errorMessage})}"/>
-                                                                  </th:block>
+    <section class="lado-direito flex-grow"
+             th:classappend="${!usuario.ehAdmin} ? 'd-flex flex-row align-items-start justify-content-around' : 'd-flex flex-column'">
+        <hr/> 
 
-      <th:block th:if="${usuario.ehAdmin}">
-        <h3 class="cormorant-bold">Gerenciamento de Administrador</h3>
-        <p>Aqui você pode gerenciar produtos.</p>
-        <th:block th:replace="~{fragments/cadastrarProduto :: cadastrarProduto}" />
-        <th:block th:replace="~{fragments/listarProdutos :: listarProdutos}" />
-        <div th:if="${mostrarConfirmacao}">
-          <th:block th:replace="~{fragments/confirmarAdicionarQuantidade :: confirmarAdicionarQuantidade}" />
-        </div>
-      </th:block>
+        <th:block th:if="!${usuario.ehAdmin}">
+            <th:block th:replace="~{fragments/alterarSenhaUsuario :: alterarSenhaUsuario (successMessage=${successMessage}, errorMessage=${errorMessage})}"/>
+
+            <form th:action="@{/perfil/atualizarFoto}" method="post" enctype="multipart/form-data">
+              <div>
+                  <h3 class="cormorant-bold">Adicionar foto de perfil</h3>
+                  <label for="imagemUsuario" class="form-label">Foto do Perfil:</label>
+                  <input type="file" id="imagemUsuario" name="imagem" class="form-control" accept="image/*" required />
+              </div>
+              <button type="submit" class="btn btn-outline-primary btn-sm mt-2">Salvar Foto</button>
+          </form>
+        </th:block>
+
+        <th:block th:if="${usuario.ehAdmin}">
+            <h3 class="cormorant-bold">Gerenciamento de Administrador</h3>
+            <p>Aqui você pode gerenciar produtos.</p>
+            <th:block th:replace="~{fragments/cadastrarProduto :: cadastrarProduto}" />
+            <th:block th:replace="~{fragments/listarProdutos :: listarProdutos}" />
+            <div th:if="${mostrarConfirmacao}">
+                <th:block th:replace="~{fragments/confirmarAdicionarQuantidade :: confirmarAdicionarQuantidade}" />
+            </div>
+        </th:block>
     </section>
   </div>
 

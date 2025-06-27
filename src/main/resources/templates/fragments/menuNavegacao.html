@@ -22,8 +22,18 @@
         <a th:href="@{/carrinho}" class="d-flex align-items-center justify-content-center p-1">
           <img src="../img/cart_icon.png" alt="Ícone de perfil" class=" img-fluid" style="max-width: 30px;">
         </a>
-        <a th:href="@{/perfil}" class="rounded-circle  border d-flex align-items-center justify-content-center p-1">
-          <img src="../img/user_icon.png" alt="Ícone de perfil" class="img-fluid" style="max-width: 30px;">
+        <a th:href="@{/perfil}" class="rounded-circle border d-flex align-items-center justify-content-center p-1">
+          <img th:if="${currentUser != null and currentUser.imgUrl != null and !currentUser.imgUrl.isEmpty()}"
+               th:src="${currentUser.imgUrl}"
+               alt="Foto de perfil do usuário"
+               class="img-fluid rounded-circle"
+               style="max-width: 30px; height: 30px; object-fit: cover;">
+      
+          <img th:unless="${currentUser != null and currentUser.imgUrl != null and !currentUser.imgUrl.isEmpty()}"
+               src="../img/user_icon.png"
+               alt="Ícone de perfil padrão"
+               class="img-fluid"
+               style="max-width: 30px;">
         </a>
       </div>
 
