@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Map; // Importar Map
 import java.util.Optional;
 import java.util.UUID;
 
@@ -57,22 +57,20 @@ public class ProdutoController {
             return "perfil";
         }
 
-        // Lógica para tratamento da imagem, que será adicionada no caminho definido por UPLOAD_DIR, sendo o mesmo salvo no BD
+        // Lógica para tratamento da imagem
         if (imagem.isEmpty()) {
             model.addAttribute("erro", "Por favor, selecione um arquivo de imagem.");
-            return "cadastrarProduto"; // Ou a view do seu formulário
+            return "cadastrarProduto";
         }
 
-        String imageUrl = null; // Para armazenar o caminho da imagem que você vai salvar no DB
+        String imageUrl = null;
 
         try {
-            // Garante que o diretório de upload exista
             Path uploadPath = Paths.get(UPLOAD_DIR);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
 
-            // Gera um nome de arquivo único
             String originalFileName = imagem.getOriginalFilename();
             String fileExtension = "";
             if (originalFileName != null && originalFileName.contains(".")) {
@@ -80,23 +78,17 @@ public class ProdutoController {
             }
             String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
 
-            // Caminho completo onde o arquivo será salvo
             Path filePath = Paths.get(UPLOAD_DIR + uniqueFileName);
-
-            // Salva o arquivo no sistema de arquivos local
             Files.copy(imagem.getInputStream(), filePath);
 
-            // A URL relativa que será salva no banco de dados
             imageUrl = "/uploads/" + uniqueFileName;
-
-            // Salva a URL no objeto Produto
             produto.setImgUrl(imageUrl);
         
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("erro", "Erro ao fazer upload da imagem: " + e.getMessage());
-            return "cadastrarProduto"; // Retorna para a view do formulário com erro
-        } catch (Exception e) { // Captura outras exceções ao salvar no DB, por exemplo
+            return "cadastrarProduto";
+        } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("erro", "Erro ao cadastrar produto: " + e.getMessage());
             return "cadastrarProduto";
@@ -116,8 +108,9 @@ public class ProdutoController {
         }
         return "redirect:/perfil";
     }
+
     // Para o estoque no perfil admin
-    private void carregarProdutos(Model model) {
+    private void carregarProdutos(Model model) { // Renomeado para carregarProdutosAdmin para maior clareza
         List<Produto> produtos = produtoService.acharTodos();
 
         List<Map<String, Object>> listaMapeada = new ArrayList<>();
@@ -143,6 +136,7 @@ public class ProdutoController {
         model.addAttribute("colunas", colunas);
         model.addAttribute("produtos", listaMapeada);
     }
+
     @PostMapping("/produtos/remover")
     public String removerProduto(@RequestParam("id") Long id) {
         try{
@@ -153,7 +147,7 @@ public class ProdutoController {
         return "redirect:/perfil";
     }
 
-    @GetMapping("/produtos") // APENAS /PRODUTOS AGORA
+    @GetMapping("/produtos") // Cuida da barra de pesquisa e da vitrine geral
     public String listarProdutos(@RequestParam(value = "search", required = false) String searchTerm, Model model) {
         List<Produto> produtos;
         String templateRetorno;
@@ -164,12 +158,26 @@ public class ProdutoController {
             templateRetorno = "resultadoPesquisa"; // Para resultados da pesquisa
         } else {
             produtos = produtoService.acharTodos(); // Para listagem geral sem pesquisa
-            templateRetorno = "home"; // Ou outro template para listagem completa, se não for a home
+            templateRetorno = "resultadoPesquisa"; // Ainda retorna resultados, mas com todos os produtos
         }
 
         model.addAttribute("produtos", produtos);
         return templateRetorno;
     }
+
+    // --- NOVO MÉTODO PARA EXIBIR A PÁGINA DE COLEÇÕES COM CARROSSÉIS AGRUPADOS ---
+    @GetMapping("/colecoes")
+    public String exibirColecoesAgrupadas(Model model) {
+        // Obtém o mapa de produtos agrupados por coleção do serviço
+        Map<String, List<Produto>> produtosPorColecao = produtoService.getProdutosAgrupadosPorColecao();
+        
+        // Adiciona o mapa ao modelo. Este nome ("produtosPorColecao") é crucial para o HTML/JS.
+        model.addAttribute("produtosPorColecao", produtosPorColecao);
+
+        // Retorna o nome do template da sua página de coleções
+        return "colecoes";
+    }
+
     @GetMapping("/produto/{id}")
     public String exibirDetalhesProduto(@PathVariable Long id, Model model) {
         
@@ -182,12 +190,11 @@ public class ProdutoController {
             List<Produto> tamanhosDisponiveis = produtoService.acharPorNomeColecao(produto.getNome(), produto.getColecao());
 
             // Filtrar para remover tamanhos com quantidade 0 (se necessário)
-            tamanhosDisponiveis.removeIf(p -> p.getQuantidade() <= 0); // Supondo que Produto tenha getQuantidade()
+            tamanhosDisponiveis.removeIf(p -> p.getQuantidade() <= 0);
 
             model.addAttribute("tamanhosDisponiveis", tamanhosDisponiveis);
 
-            //Calcular previsão de entrega
-
+            // Calcular previsão de entrega
             LocalDate dataAtual = LocalDate.now();
             LocalDate dataInicioPrevisao = dataAtual.plusWeeks(1);
             LocalDate dataFimPrevisao = dataInicioPrevisao.plusWeeks(1);

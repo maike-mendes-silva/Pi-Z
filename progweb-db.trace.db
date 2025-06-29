@@ -1972,3 +1972,21 @@ org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-22
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
 2025-06-27 19:56:18.516403Z jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-29 10:58:55.781960-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-29 11:02:03.114388-04:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM \000d\000a[*]10CARRINHO"; expected "identifier"; SQL statement:
+SELECT * FROM 
+10CARRINHO [42001-224]
+2025-06-29 11:02:09.112686-04:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM \000d\000a[*]10CARRINHO"; expected "identifier"; SQL statement:
+SELECT * FROM 
+10CARRINHO [42001-224]
+2025-06-29 11:04:12.114119-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-29 13:55:35.092530-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-29 14:47:16.640295-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2025-06-29 17:47:53.927305-04:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

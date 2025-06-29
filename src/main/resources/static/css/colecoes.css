@@ -148,19 +148,32 @@ section .card .image img{
   justify-content: center;
 }
 
-.mySwiper {
-  max-width: 950px;
-  width: 100%;
+.swiper { /* Seleciona qualquer div com a classe 'swiper' */
+    width: 100%;
+    max-width: 1200px; /* Ajuste para sua preferência */
+    margin: 0 auto;
+    padding: 0 50px; /* ESSENCIAL para espaço das setas */
+    /* Remova qualquer 'overflow: hidden;' aqui se estiver presente */
 }
 
-.swiper-slide {
-  margin-right: 20px;  /* A margem entre os cards */
+.swiper-wrapper { /* O wrapper que contém todos os slides */
+    display: flex; /* Essencial para o Swiper funcionar com flexbox */
+    box-sizing: content-box; /* Importante para o cálculo do Swiper */
 }
 
-/* Para o último card não ter margem extra */
-.swiper-slide:last-child {
-  margin-right: 0;
+.swiper-slide { /* Cada slide individual */
+    flex-shrink: 0; /* Impede que o slide encolha */
+    width: var(--swiper-slide-width) !important; /* Força o Swiper a dimensionar o slide */
+    display: flex !important; /* Garante que seja flex */
+    margin: 20px;
+
+
+    height: auto;
+    justify-content: center; /* Centraliza o card horizontalmente */
+    align-items: stretch; /* Estica os cards para terem a mesma altura */
 }
+
+
 
 .card {
   width: 13rem;
@@ -172,6 +185,8 @@ section .card .image img{
   background: #FEFFFE;
   border: 1px solid #F5F2B4;
 }
+
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -204,6 +219,8 @@ section .card .image img{
   font-size: 17px;
   color: #A09E75;
 }
+
+
 
 .rating {
   color: #F5F2B4;
@@ -322,3 +339,4 @@ section .card .image img{
 .termos a:hover{
   color: #fefefe;
 }
+

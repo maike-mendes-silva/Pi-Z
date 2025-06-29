@@ -1,6 +1,6 @@
 #FileLock
-#Sun Jun 29 10:39:19 AMT 2025
-server=192.168.237.134\:46447
+#Sun Jun 29 14:52:55 AMT 2025
+server=192.168.237.134\:35513
 hostName=archlinux
 method=file
-id=197bc20db365d172f087fb2c22e2caa3624a8215615
+id=197bd0908e4cf105de6f4824940560588f09e5564b9

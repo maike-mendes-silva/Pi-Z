@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -91,6 +92,14 @@ public class ProdutoService {
         }
         // Caso contrário, busca por nome ou descrição (usando o método do repositório)
         return produtoRepository.findByNomeContainingIgnoreCaseOrDescricaoContainingIgnoreCase(termo, termo);
+    }
+
+    // --- MÉTODO Para obter todos os produtos agrupados apenas por coleção ---
+    public Map<String, List<Produto>> getProdutosAgrupadosPorColecao() {
+        List<Produto> todosProdutos = produtoRepository.findAll();
+        // Agrupa os produtos por nome da coleção
+        return todosProdutos.stream()
+            .collect(Collectors.groupingBy(Produto::getColecao));
     }
 
 }
