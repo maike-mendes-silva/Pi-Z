@@ -41,20 +41,15 @@
     </div>
 
     <!-- Barra de Pesquisa -->
-    <form class="w-100 p-1">
+    <form th:action="@{/produtos}" class="w-100 p-1">
       <div class="input-group">
         <!-- Input com borda arredondada à esquerda -->
-        <input type="text" class="form-control rounded-start-pill"
-          placeholder="Que tipo de pisada você quer dar hoje?">
+        <input type="search" class="form-control rounded-start-pill"
+          placeholder="O que você está procurando?"aria-label="Search" name="search" th:value="${searchTerm}">
 
         <!-- Botão da lupa -->
-        <button class="btn btn-outline-secondary" type="button">
+        <button class="btn btn-outline-secondary rounded-end-pill" type="submit">
           <img src="../img/Search_icon.png" alt="Pesquisar" style="width: 20px; height: 20px;">
-        </button>
-
-        <!-- Botão da câmera -->
-        <button class="btn btn-outline-secondary rounded-end-pill" type="button">
-          <img src="../img/camera_icon.png" alt="Pesquisar por imagem" style="width: 20px; height: 20px;">
         </button>
       </div>
 

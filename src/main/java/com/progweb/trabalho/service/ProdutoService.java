@@ -32,7 +32,7 @@ public class ProdutoService {
 
     public Optional<Produto> acharPorId(long id){
         return produtoRepository.findById(id);
-    }
+    }   
 
     public List<Produto> acharTodos(){
         return produtoRepository.findAll();
@@ -81,6 +81,16 @@ public class ProdutoService {
     //Sem agrupar
     public List<Produto> acharPorNomeColecao(String nome, String colecao) {
         return produtoRepository.findByNomeAndColecao(nome, colecao); // Busca todos os produtos
+    }
+
+    // --- MÉTODO PARA A BARRA DE PESQUISA ---
+    public List<Produto> buscarProdutos(String termo) {
+        // Se o termo for nulo ou vazio, retorna todos os produtos
+        if (termo == null || termo.trim().isEmpty()) {
+            return produtoRepository.findAll(); // Ou você pode querer chamar acharTodos() se for o mesmo comportamento
+        }
+        // Caso contrário, busca por nome ou descrição (usando o método do repositório)
+        return produtoRepository.findByNomeContainingIgnoreCaseOrDescricaoContainingIgnoreCase(termo, termo);
     }
 
 }

@@ -116,7 +116,7 @@ public class ProdutoController {
         }
         return "redirect:/perfil";
     }
-
+    // Para o estoque no perfil admin
     private void carregarProdutos(Model model) {
         List<Produto> produtos = produtoService.acharTodos();
 
@@ -153,6 +153,23 @@ public class ProdutoController {
         return "redirect:/perfil";
     }
 
+    @GetMapping("/produtos") // APENAS /PRODUTOS AGORA
+    public String listarProdutos(@RequestParam(value = "search", required = false) String searchTerm, Model model) {
+        List<Produto> produtos;
+        String templateRetorno;
+
+        if (searchTerm != null && !searchTerm.trim().isEmpty()) {
+            produtos = produtoService.buscarProdutos(searchTerm);
+            model.addAttribute("searchTerm", searchTerm);
+            templateRetorno = "resultadoPesquisa"; // Para resultados da pesquisa
+        } else {
+            produtos = produtoService.acharTodos(); // Para listagem geral sem pesquisa
+            templateRetorno = "home"; // Ou outro template para listagem completa, se não for a home
+        }
+
+        model.addAttribute("produtos", produtos);
+        return templateRetorno;
+    }
     @GetMapping("/produto/{id}")
     public String exibirDetalhesProduto(@PathVariable Long id, Model model) {
         
