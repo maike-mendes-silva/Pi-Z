@@ -1,24 +1,23 @@
-/*<![CDATA[*/
 document.addEventListener('DOMContentLoaded', function () {
     var collectionsMap = /*[[${produtosPorColecao}]]*/ {}; 
-    
+
     for (var collectionName in collectionsMap) {
         if (collectionsMap.hasOwnProperty(collectionName)) {
             var swiperId = 'swiper-collection-' + collectionName.replace(/ /g, '-').replace(/\//g, '-');
-            
-            // Verifica se o elemento do Swiper existe antes de inicializar
-            if (document.getElementById(swiperId)) {
-                new Swiper('#' + swiperId, {
+            var swiperElement = document.getElementById(swiperId); // Obter a referência direta ao elemento Swiper
+
+            if (swiperElement) {
+                new Swiper(swiperElement, { // Passe o elemento DOM diretamente, não a string do seletor
                     slidesPerView: 4,
                     spaceBetween: 20,
                     loop: false,
                     pagination: {
-                        el: '#' + swiperId + ' .swiper-pagination',
+                        el: swiperElement.querySelector('.swiper-pagination'), // Encontre a paginação DENTRO deste elemento Swiper
                         clickable: true,
                     },
                     navigation: {
-                        nextEl: '#' + swiperId + ' .swiper-button-next',
-                        prevEl: '#' + swiperId + ' .swiper-button-prev',
+                        nextEl: swiperElement.querySelector('.swiper-button-next'), // Encontre o next DENTRO deste elemento Swiper
+                        prevEl: swiperElement.querySelector('.swiper-button-prev'), // Encontre o prev DENTRO deste elemento Swiper
                     },
                     observer: true,
                     observeParents: true,
@@ -35,4 +34,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-/*]]>*/                                             

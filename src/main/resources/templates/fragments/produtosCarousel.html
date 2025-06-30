@@ -1,26 +1,27 @@
-<div th:fragment="produtosCarousel(produtosDaColecao, carouselId)" 
-     th:id="${carouselId}" 
+<div th:fragment="produtosCarousel(produtosDaColecao, carouselId)"
+     th:id="${carouselId}"
      class="swiper mySwiper">
 
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" th:each="produto : ${produtosDaColecao}">
-      <div class="card card-produto">
-        <a th:href="@{/produto/{id}(id=${produto.id})}">
-          <img th:src="${produto.imgUrl}" class="card-img-top img-produto" th:alt="${produto.nome}">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
-          <p class="card-text descricao-produto" th:text="${produto.descricao}"></p>
-          <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"></p>
-          <div class="d-flex gap-2 justify-content-center">
-            <a class="btn btn-primary btn-sm" th:href="@{/produto/{id}(id=${produto.id})}">Comprar</a>
-          </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" th:each="produto : ${produtosDaColecao}">
+            <div class="card card-produto">
+                <a th:href="@{/produto/{id}(id=${produto.id})}">
+                    <img th:src="${produto.imgUrl}" class="card-img-top img-produto" th:alt="${produto.nome}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title titulo-produto" th:text="${produto.nome}"></h5>
+                    <p class="card-text descricao-produto" th:text="${produto.descricao}"></p>
+                    <p class="card-text preco-produto" th:text="'R$' + ${#numbers.formatDecimal(produto.preco, 1, 'COMMA', 2, 'POINT')}"></p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a class="btn btn-primary btn-sm" th:href="@{/produto/{id}(id=${produto.id})}">Comprar</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-pagination"></div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
 
 </div>

@@ -1,6 +1,6 @@
 #FileLock
-#Mon Jun 30 00:45:50 UTC 2025
-server=10.88.0.3\:35473
+#Mon Jun 30 15:54:33 UTC 2025
+server=10.88.0.3\:38293
 hostName=firebase-pi-zgit-1750780215023
 method=file
-id=197be4c236b1c83c341c206a1025a1d6531eba1020a
+id=197c18c16bacb26ba86779a42e4cda1eaa6634d35a9

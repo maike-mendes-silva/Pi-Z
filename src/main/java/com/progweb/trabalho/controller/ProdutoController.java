@@ -165,19 +165,6 @@ public class ProdutoController {
         return templateRetorno;
     }
 
-    // --- NOVO MÉTODO PARA EXIBIR A PÁGINA DE COLEÇÕES COM CARROSSÉIS AGRUPADOS ---
-    @GetMapping("/colecoes")
-    public String exibirColecoesAgrupadas(Model model) {
-        // Obtém o mapa de produtos agrupados por coleção do serviço
-        Map<String, List<Produto>> produtosPorColecao = produtoService.getProdutosAgrupadosPorColecao();
-        
-        // Adiciona o mapa ao modelo. Este nome ("produtosPorColecao") é crucial para o HTML/JS.
-        model.addAttribute("produtosPorColecao", produtosPorColecao);
-
-        // Retorna o nome do template da sua página de coleções
-        return "colecoes";
-    }
-
     @GetMapping("/produto/{id}")
     public String exibirDetalhesProduto(@PathVariable Long id, Model model) {
         

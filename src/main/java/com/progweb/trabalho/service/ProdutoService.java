@@ -67,6 +67,8 @@ public class ProdutoService {
         }
     }
 
+    //Agrupando
+
     public List<Produto> getProdutosAgrupadosPorColecaoENome() {
         List<Produto> produtos = produtoRepository.findAll(); // Busca todos os produtos
 
@@ -97,8 +99,20 @@ public class ProdutoService {
     // --- MÉTODO Para obter todos os produtos agrupados apenas por coleção ---
     public Map<String, List<Produto>> getProdutosAgrupadosPorColecao() {
         List<Produto> todosProdutos = produtoRepository.findAll();
-        // Agrupa os produtos por nome da coleção
-        return todosProdutos.stream()
+
+        // Agrupa os produtos por Coleção E Nome, pegando apenas um representante de cada
+        Map<SimpleEntry<String, String>, Produto> produtosUnicosPorColecaoENome = todosProdutos.stream()
+            .collect(Collectors.groupingBy(
+                produto -> new SimpleEntry<>(produto.getColecao(), produto.getNome()), // Chave composta (Coleção, Nome)
+                Collectors.collectingAndThen(Collectors.toList(), list -> list.get(0)) // Pega o primeiro item de cada grupo
+            ));
+
+        // Pega os produtos representativos
+        List<Produto> produtosRepresentativos = produtosUnicosPorColecaoENome.values().stream()
+            .collect(Collectors.toList());
+
+        // Agrupa os produtos representativos apenas por Coleção
+        return produtosRepresentativos.stream()
             .collect(Collectors.groupingBy(Produto::getColecao));
     }
 
