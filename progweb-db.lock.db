@@ -1,6 +1,6 @@
 #FileLock
-#Sun Jun 29 14:52:55 AMT 2025
-server=192.168.237.134\:35513
-hostName=archlinux
+#Mon Jun 30 00:45:50 UTC 2025
+server=10.88.0.3\:35473
+hostName=firebase-pi-zgit-1750780215023
 method=file
-id=197bd0908e4cf105de6f4824940560588f09e5564b9
+id=197be4c236b1c83c341c206a1025a1d6531eba1020a

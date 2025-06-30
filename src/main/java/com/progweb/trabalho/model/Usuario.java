@@ -25,7 +25,7 @@ public class Usuario {
     private String nomeCompleto;
     
     @NotBlank(message = "Email é obrigatório")
-    @Email
+    @Email(message = "Formato de e-mail inválido.")
     @Column(unique = true)
     private String email;
 

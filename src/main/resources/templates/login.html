@@ -24,7 +24,7 @@
 
   <!-- Alerta Toast -->
   <div th:if="${mensagem}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 7rem; right: 1rem;" data-bs-autohide="true"
-  data-bs-delay="7000">
+  data-bs-delay="5000">
     <div class="toast-header">
       <strong class="me-auto">Aviso</strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
@@ -38,6 +38,7 @@
             
             <div class="w-50 text-center">
                 <h1 class="cormorant-bold">Iniciar Sessão</h1>
+                
                 <form class="d-flex flex-column gap-4 mt-4" th:action="@{/login}" method="post">
                     <input type="text" name="username" class="form-control" placeholder="Usuário" required />
                     <input type="password" name="password" class="form-control" placeholder="Senha" required />
@@ -51,7 +52,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Para que o alerta toast saia da tela depois de 7 segundos -->
+    <!-- Para que o alerta toast saia da tela depois de 5 segundos -->
     <script>
       const toastEl = document.querySelector('.toast');
       const toast = new bootstrap.Toast(toastEl);

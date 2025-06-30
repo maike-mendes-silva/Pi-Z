@@ -64,15 +64,16 @@ public class PerfilController {
                                  Model model) {
 
         String email = authentication.getName();
-        Long usuarioId = null;
+        Usuario usuario = null;
 
         try {
-            usuarioId = usuarioService.acharPorEmail(email)
-                                      .orElseThrow(() -> new UsernameNotFoundException("Usuário autenticado não encontrado no sistema."))
-                                      .getId();
+            // Busca o usuário completo no início para que ele esteja disponível para o modelo em caso de erro
+            usuario = usuarioService.acharPorEmail(email)
+                                    .orElseThrow(() -> new UsernameNotFoundException("Usuário autenticado não encontrado no sistema."));
+            model.addAttribute("usuario", usuario);
         } catch (UsernameNotFoundException e) {
-            model.addAttribute("errorMessage", e.getMessage()); 
-            return "perfil"; 
+            model.addAttribute("errorMessage", e.getMessage());
+            return "redirect:/logout";
         }
 
         if (!newPassword.equals(confirmNewPassword)) {
@@ -85,7 +86,8 @@ public class PerfilController {
         }
 
         try {
-            usuarioService.alterarSenha(usuarioId, currentPassword, newPassword);
+            // Passa o ID do usuário do objeto criado
+            usuarioService.alterarSenha(usuario.getId(), currentPassword, newPassword);
             model.addAttribute("successMessage", "Senha alterada com sucesso!");
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
@@ -94,12 +96,6 @@ public class PerfilController {
             e.printStackTrace();
         }
         
-        try {
-            Usuario usuario = usuarioService.acharPorEmail(email).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
-            model.addAttribute("usuario", usuario);
-        } catch (UsernameNotFoundException e) {
-            return "redirect:/logout"; 
-        }
         model.addAttribute("produtos", produtoService.acharTodos()); 
 
         return "perfil"; 

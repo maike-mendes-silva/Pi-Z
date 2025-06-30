@@ -32,6 +32,7 @@
                   <div class="product-info">
                       <h3 class="product-name" th:text="${item.produto.nome}"></h3>
                       <p class="product-quantity">Quantidade: <span th:text="${item.quantidade}"></span></p>
+                      <p class="product-size">Tamanho: <span th:text="${item.produto.tamanho}"></span></p>
                       <p class="product-price"
                          th:text="'R$ ' + ${#numbers.formatDecimal(item.quantidade * item.precoUnitarioNoMomentoDaAdicao, 1, 'COMMA', 2, 'POINT')}"></p>
                   </div>
